@@ -20,6 +20,22 @@
     ```
 - Prepare for Rails 7.1's error reporter API change [#1834](https://github.com/getsentry/sentry-ruby/pull/1834)
 
+- Support `Sentry::Transaction#set_measurement` [#1838](https://github.com/getsentry/sentry-ruby/pull/1838)
+
+    Usage:
+
+    ```rb
+    # enable this experimental feature first
+    Sentry.init do |config|
+      # other configs
+      config.experiments.custom_measurements = true
+    end
+
+    # in your app
+    transaction = Sentry.get_current_scope.get_transaction
+    transaction.set_measurement("metrics.foo", 0.5, "millisecond")
+    ```
+
 ### Refactoring
 
 - Move envelope item processing/trimming logic to the Item class [#1824](https://github.com/getsentry/sentry-ruby/pull/1824)
