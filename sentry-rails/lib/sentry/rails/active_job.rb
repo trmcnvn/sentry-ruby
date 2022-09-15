@@ -21,12 +21,7 @@ module Sentry
             Sentry.with_scope do |scope|
               begin
                 scope.set_transaction_name(job.class.name)
-                transaction =
-                  if job.is_a?(::Sentry::SendEventJob)
-                    nil
-                  else
-                    Sentry.start_transaction(name: scope.transaction_name, op: "active_job")
-                  end
+                transaction = Sentry.start_transaction(name: scope.transaction_name, op: "active_job")
 
                 scope.set_span(transaction) if transaction
 
