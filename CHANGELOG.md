@@ -17,6 +17,8 @@
 
 - Use `Exception#detailed_message` when generating exception message if applicable [#1924](https://github.com/getsentry/sentry-ruby/pull/1924)
 
+- Support for Sidekiq 7 in `sentry-sidekiq`
+
 ### Bug Fixes
 
 - `Sentry::BackgroundWorker` will release `ActiveRecord` connection pool only when the `ActiveRecord` connection is established
